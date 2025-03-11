@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<script>
+		const m = Math.round(Math.random()*10);
+		const x = Math.round(Math.random()*10);
+		const C = Math.round(Math.random()*10);
+		window.onload = function() {
+			document.getElementById("eq").innerHTML=
+			m*x+C + " = " + m + "<i>x</i>" + " + " + C };
+		function checkans(e) {
+			if (e.key === "Enter") {
+				if (Number(document.getElementById("ans").value) === x) {
+					document.getElementById("marks").innerHTML="Correct! ✓"
+					document.getElementById("marks").style.color="green"
+				} else {
+					document.getElementById("marks").innerHTML="Wrong!"
+					document.getElementById("marks").style.color="red"
+				};
+			};
+		};
+	</script>
+	<body>
+		<h1 style="font-size:8em">
+			Math Quiz
+			<img style="height:1em;" src="p.svg">
+		</h1>
+		<div id=eq style="font-size:4em"></div>
+		<div style="font-size:4em">
+			<i>x</i> = <input id="ans" type="number" style="font-size:1em;" onkeydown="checkans(event)">
+		</div>
+		<div id="marks" style="font-size:4em;"></div>
+	</body>
+</html>
