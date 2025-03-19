@@ -1,2 +1,2 @@
 this is my website yay
-factorialisation.github.io/notavirus
+https://lt25106.github.io/notavirus
