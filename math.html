@@ -23,7 +23,11 @@
 	<body>
 		<h1 style="font-size:8em">
 			Math Quiz
-			<img style="height:1em;" src="p.svg">
+			<picture>
+				<source srcset="lp.svg" media="(prefers-color-scheme: light)">
+				<source srcset="dp.svg" media="(prefers-color-scheme: dark)">
+				<img src="dp.svg" style="height: 1em">
+			</picture>
 		</h1>
 		<div id=eq style="font-size:4em"></div>
 		<div style="font-size:4em">

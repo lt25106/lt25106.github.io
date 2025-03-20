@@ -1,7 +1,21 @@
 <!DOCTYPE html>
 <html>
-    <h1 style="font-size:5em">Which website do u want to access?</h1>
-    <a href="animation.html" style="font-size:2.5em">Randomn animation</a><img style="height:2.5em;" src="a.svg"><br>
-    <a href="bricks.html" style="font-size:2.5em">bricks</a><br>
-    <a href="math.html" style="font-size:2.5em">Math quiz</a><img style="height:2.5em;" src="p.svg">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <body>
+        <h1 style="font-size:5em">Which website do u want to access?</h1>
+        <a href="animation.html" style="font-size:2.5em">Randomn animation</a>
+        <picture>
+            <source srcset="la.svg" media="(prefers-color-scheme: light)">
+            <source srcset="da.svg" media="(prefers-color-scheme: dark)">
+            <img src="da.svg" style="height: 1em">
+        </picture>
+        <br>
+        <a href="bricks.html" style="font-size:2.5em">bricks</a><br>
+        <a href="math.html" style="font-size:2.5em">Math quiz</a>
+        <picture>
+            <source srcset="lp.svg" media="(prefers-color-scheme: light)">
+            <source srcset="dp.svg" media="(prefers-color-scheme: dark)">
+            <img src="dp.svg" style="height: 1em">
+        </picture>
+    </body>
 </html>
