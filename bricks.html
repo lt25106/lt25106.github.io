@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <script>
+    const brickImages = [
+    'andesite_brick.png',
+    'brick.png',
+    'diorite_brick.png',
+    'granite_brick.png',
+    'ice_brick.png',
+    'stonebrick.png',
+];
+
+function getRandomImage() {
+    const randomIndex = Math.floor(Math.random() * brickImages.length);
+    return brickImages[randomIndex];
+}
+document.body.style.backgroundImage = 'url(bricks/' + getRandomImage() + ')';
+</script>
+</body>
+</html>
