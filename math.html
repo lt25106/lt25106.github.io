@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
+	<audio id="correct-sound" src="correct.mp3" preload="auto"></audio>
+	<audio id="wrong-sound" src="wrong.mp3" preload="auto"></audio>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script>
-		const m = Math.ceil(Math.random()*10);
-		const x = Math.round(Math.random()*10);
-		const C = Math.round(Math.random()*10);
+		const m = Math.ceil(Math.random()*11);
+		const x = Math.round(Math.random()*11);
+		const C = Math.round(Math.random()*11);
 		window.onload = function() {
 			document.getElementById("eq").innerHTML=
 			m*x+C + " = " + m + "<i>x</i>" + " + " + C };
@@ -13,9 +15,14 @@
 				if (Number(document.getElementById("ans").value) === x) {
 					document.getElementById("marks").innerHTML="Correct! ✓"
 					document.getElementById("marks").style.color="green"
+					document.getElementById("correct-sound").play()
+					setTimeout(() => {
+        			location.reload();
+    				}, 1000);
 				} else {
 					document.getElementById("marks").innerHTML="Wrong!"
 					document.getElementById("marks").style.color="red"
+					document.getElementById("wrong-sound").play()
 				};
 			};
 		};

@@ -16,6 +16,9 @@ function getRandomImage() {
     return brickImages[randomIndex];
 }
 document.body.style.backgroundImage = 'url(bricks/' + getRandomImage() + ')';
+document.addEventListener("click", function() {
+        location.reload();
+    });
 </script>
 </body>
 </html>
