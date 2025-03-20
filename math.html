@@ -23,9 +23,9 @@
 					marks++;
 					setTimeout(() => {location.reload();}, 3000);
 				} else {
-					document.getElementById("corw").innerHTML="Wrong!";
-					document.getElementById("corw").style.color="red";
-					document.getElementById("wrong-sound").play();
+					document.getElementById("marks").innerHTML="Wrong! ✗"
+					document.getElementById("marks").style.color="red"
+					document.getElementById("wrong-sound").play()
 				};
 			};
 			document.getElementById("marksovermax").innerHTML=
