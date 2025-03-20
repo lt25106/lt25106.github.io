@@ -23,15 +23,15 @@
 					marks++;
 					setTimeout(() => {location.reload();}, 3000);
 				} else {
-					document.getElementById("marks").innerHTML="Wrong! ✗"
-					document.getElementById("marks").style.color="red"
+					document.getElementById("corw").innerHTML="Wrong! ✗"
+					document.getElementById("corw").style.color="red"
 					document.getElementById("wrong-sound").play()
 				};
+				document.getElementById("marksovermax").innerHTML=
+					'<button onclick="reset()" style="text-align:right;font-size:1em">Reset</button>'+marks+"/"+maxmarks;
+				localStorage.setItem("marks", marks);
+				localStorage.setItem("maxmarks", maxmarks);
 			};
-			document.getElementById("marksovermax").innerHTML=
-				'<button onclick="reset()" style="text-align:right;font-size:1em">Reset</button>'+marks+"/"+maxmarks;
-			localStorage.setItem("marks", marks);
-			localStorage.setItem("maxmarks", maxmarks);
 		};
 		function reset() {
 			localStorage.setItem("marks", 0);
