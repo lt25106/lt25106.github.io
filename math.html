@@ -7,25 +7,37 @@
 		const m = Math.ceil(Math.random()*11);
 		const x = Math.round(Math.random()*11);
 		const C = Math.round(Math.random()*11);
+		let marks=Number(localStorage.getItem("marks")) ||0;
+		let maxmarks=Number(localStorage.getItem("maxmarks")) ||0;
 		window.onload = function() {
-			document.getElementById("eq").innerHTML=
-			m*x+C + " = " + m + "<i>x</i>" + " + " + C };
+			document.getElementById("eq").innerHTML=m*x+C + " = " + m + "<i>x</i>" + " + " + C;
+			document.getElementById("marksovermax").innerHTML=
+				'<button onclick="reset()" style="text-align:right;font-size:1em">Reset</button>'+marks+"/"+maxmarks;}
 		function checkans(e) {
 			if (e.key === "Enter") {
+				maxmarks++;
 				if (Number(document.getElementById("ans").value) === x) {
-					document.getElementById("marks").innerHTML="Correct! ✓"
-					document.getElementById("marks").style.color="green"
-					document.getElementById("correct-sound").play()
-					setTimeout(() => {
-        			location.reload();
-    				}, 1000);
+					document.getElementById("corw").innerHTML="Correct! ✓";
+					document.getElementById("corw").style.color="green";
+					document.getElementById("correct-sound").play();
+					marks++;
+					setTimeout(() => {location.reload();}, 3000);
 				} else {
-					document.getElementById("marks").innerHTML="Wrong! ✗"
-					document.getElementById("marks").style.color="red"
+					document.getElementById("corw").innerHTML="Wrong! ✗"
+					document.getElementById("corw").style.color="red"
 					document.getElementById("wrong-sound").play()
 				};
+				document.getElementById("marksovermax").innerHTML=
+					'<button onclick="reset()" style="text-align:right;font-size:1em">Reset</button>'+marks+"/"+maxmarks;
+				localStorage.setItem("marks", marks);
+				localStorage.setItem("maxmarks", maxmarks);
 			};
 		};
+		function reset() {
+			localStorage.setItem("marks", 0);
+			localStorage.setItem("maxmarks", 0);
+			location.reload();
+		}
 	</script>
 	<body>
 		<h1 style="font-size:8em">
@@ -38,8 +50,9 @@
 		</h1>
 		<div id=eq style="font-size:4em"></div>
 		<div style="font-size:4em">
-			<i>x</i> = <input id="ans" type="number" style="font-size:1em;" onkeydown="checkans(event)">
+			<i>x</i> = <input id="ans" type="number" style="font-size:1em;" onkeydown="checkans(event)" autofocus>
 		</div>
-		<div id="marks" style="font-size:4em;"></div>
+		<div id="corw" style="font-size:4em;"></div>
+		<div id="marksovermax" style="text-align:right;font-size:4em"></div>
 	</body>
 </html>
