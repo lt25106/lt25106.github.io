@@ -2,32 +2,48 @@
 <html>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<style>
-		div {
+		.rgb {
 			width: 10em;
 			height: 10em;
 			background-color:blue;
-			animation-name: div;
+			animation-name: rgb;
 			animation-duration: 8s;
 			animation-iteration-count: infinite;
 		}
-		@keyframes div {
-			0% {}
+		@keyframes rgb {
 			33% {
-				width:20em;
-				height:20em;
 				background-color:red;
 			}
 			66% {
-				width: 10em;
-				height: 10em;
 				background-color:green;
 			}
 			100% {
-				width: 10em;
-				height: 10em;
 				background-color:blue;
 			}
 		}
+		.slide {
+			position: relative;
+			left: 100%;
+			width: 10em;
+			height: 10em;
+			background-color: aqua;
+			animation-name: slide;
+			animation-duration: 5s;
+			animation-iteration-count: infinite;
+		}
+		@keyframes slide {
+			100% {
+				left: 0%;
+			}
+		}
 	</style>
-	<body><div></div></body>
+	<script>
+		document.addEventListener("keydown", function(event) {
+			(document.getElementById("slide")).style.backgroundColor="#"+Math.floor(Math.random()*16777215).toString(16).padStart(6,"0");
+		});
+	</script>
+	<body>
+		<div class="rgb"></div>
+		<div class="slide" id="slide"></div>
+	</body>
 </html>
