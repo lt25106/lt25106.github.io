@@ -2,19 +2,19 @@
 <html><body>
     <script>
         const brickImages = [
-        'andesite_brick.png',
-        'brick.png',
-        'diorite_brick.png',
-        'granite_brick.png',
-        'ice_brick.png',
-        'stonebrick.png',
-        'nether_brick.png',
+        'andesite_',
+        '',
+        'diorite_',
+        'granite_',
+        'ice_',
+        'stone',
+        'nether_',
         ]
         function RandomBrick() {
             const randomIndex = Math.floor(Math.random() * brickImages.length);
             return brickImages[randomIndex];
         }
-        document.body.style.backgroundImage = 'url(bricks/' + RandomBrick() + ')';
+        document.body.style.backgroundImage = 'url(bricks/' + RandomBrick() + 'brick.png)';
         document.addEventListener("click", function() {
             location.reload();
         });
