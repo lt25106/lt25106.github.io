@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html>
+<style>
+    body {
+        background-size: 256px 256px;
+        image-rendering: pixelated;
+    }
+</style>
 <body>
     <script>
         const brickImages = [
@@ -15,12 +21,11 @@
         'end-stone-',
         'quartz-'
         ];
-        
         function RandomBrick() {
             const randomIndex = Math.floor(Math.random() * brickImages.length);
             return brickImages[randomIndex];
         }
-        document.body.style.backgroundImage = 'url(MCbricks/' + RandomBrick() + 'bricks.png)';
+        document.body.style.backgroundImage='url(MCbricks/' + RandomBrick() + 'bricks.png)';
         document.addEventListener("click", function() {
             location.reload();
         });
