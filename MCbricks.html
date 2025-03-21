@@ -3,26 +3,22 @@
 <body>
     <script>
         const brickImages = [
-        'andesite_brick.png',
-        'brick.png',
-        'diorite_brick.png',
-        'granite_brick.png',
-        'ice_brick.png',
-        'stonebrick.png',
-        'nether_brick.png',
+        'bricks.png',
+        'deepslate-bricks.png',
+        'stone-bricks.png',
         ];
         
         function RandomBrick() {
             const randomIndex = Math.floor(Math.random() * brickImages.length);
             return brickImages[randomIndex];
         }
-        document.body.style.backgroundImage = 'url(bricks/' + RandomBrick() + ')';
+        document.body.style.backgroundImage = 'url(MCbricks/MC' + RandomBrick() + ')';
         document.addEventListener("click", function() {
             location.reload();
         });
         document.addEventListener("keydown", function(event) {
-            if (event.key === "m" || event.key === "M") { 
-                window.location.href = "MCbricks.html";
+            if (event.key === "b" || event.key === "B") { 
+                window.location.href = "bricks.html";
             } else {
                 location.reload();
             }
