@@ -2,22 +2,27 @@
 <html>
     <link rel="stylesheet" type="text/css" href="style.css">
     <body>
-        <h1 style="font-size:5em">Which website do u want to access?</h1>
-        <a href="animation.html" style="font-size:2.5em">Randomn animation</a>
+        <picture class="logo">
+            <source srcset="SVGs/llogo.svg" media="(prefers-color-scheme: light)">
+            <source srcset="SVGs/dlogo.svg" media="(prefers-color-scheme: dark)">
+            <img src="SVGs/dlogo.svg" style="height: 1em">
+        </picture>
+        <h1 style="font-size:4em">Which website do u want to access?</h1>
+        <a href="animation.html" style="font-size:3em">Randomn animation</a>
         <picture>
             <source srcset="SVGs/la.svg" media="(prefers-color-scheme: light)">
             <source srcset="SVGs/da.svg" media="(prefers-color-scheme: dark)">
             <img src="SVGs/da.svg" style="height: 1em">
         </picture>
         <br>
-        <a href="bricks.html" style="font-size:2.5em">bricks</a>
+        <a href="bricks.html" style="font-size:3em">bricks</a>
         <picture>
             <source srcset="bricks/stonebrick.png" media="(prefers-color-scheme: light)">
             <source srcset="bricks/diorite_brick.png" media="(prefers-color-scheme: dark)">
             <img src="bricks/diorite_brick.png" style="height: 1em;image-rendering: pixelated">
         </picture>
         <br>
-        <a href="math.html" style="font-size:2.5em">Math quiz</a>
+        <a href="math.html" style="font-size:3em">Math quiz</a>
         <picture>
             <source srcset="SVGs/lp.svg" media="(prefers-color-scheme: light)">
             <source srcset="SVGs/dp.svg" media="(prefers-color-scheme: dark)">
