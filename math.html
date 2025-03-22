@@ -21,7 +21,7 @@
 					document.getElementById("corw").style.color="green";
 					document.getElementById("correct-sound").play();
 					marks++;
-					setTimeout(() => {location.reload();}, 3000);
+					setTimeout(() => {location.reload();}, 1000);
 				} else {
 					document.getElementById("corw").innerHTML="Wrong! ✗"
 					document.getElementById("corw").style.color="red"
@@ -40,6 +40,13 @@
 		}
 	</script>
 	<body>
+		<a href="index.html" class="logo">
+			<picture>
+				<source srcset="llogo.svg" media="(prefers-color-scheme: light)">
+				<source srcset="dlogo.svg" media="(prefers-color-scheme: dark)">
+				<img src="dlogo.svg" style="height: 1em">
+			</picture>
+		</a>
 		<h1 style="font-size:8em">
 			Math Quiz
 			<picture>

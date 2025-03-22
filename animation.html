@@ -43,6 +43,13 @@
 			(document.getElementById("slide")).style.backgroundColor="#"+Math.floor(Math.random()*16777215).toString(16).padStart(6,"0");
 		});
 	</script>
+	<a href="index.html" class="logo">
+		<picture>
+			<source srcset="llogo.svg" media="(prefers-color-scheme: light)">
+			<source srcset="dlogo.svg" media="(prefers-color-scheme: dark)">
+			<img src="dlogo.svg" style="height: 1em">
+		</picture>
+	</a>
 	<body>
 		<div class="rgb"></div>
 		<div class="slide" id="slide"></div>
