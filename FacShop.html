@@ -25,6 +25,13 @@
     }
 </style>
 <body>
+    <a href="index.html" class="logo">
+        <picture>
+            <source srcset="SVGs/llogo.svg" media="(prefers-color-scheme: light)">
+            <source srcset="SVGs/dlogo.svg" media="(prefers-color-scheme: dark)">
+            <img src="SVGs/dlogo.svg" style="height: 1em">
+        </picture>
+    </a>
     <form name="order" id="order">
         <table>
             <tr class="pixelart">
@@ -42,19 +49,19 @@
             <tr>
                 <td>
                     <span id="price_coal">4.25</span>
-                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;">
+                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;" class="pixelart">
                 </td>
                 <td>
                     <span id="price_iron">14.00</span>
-                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;">
+                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;" class="pixelart">
                 </td>
                 <td>
                     <span id="price_gold">50.00</span>
-                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;">
+                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;" class="pixelart">
                 </td>
                 <td>
                     <span id="price_dimstone">175.00</span>
-                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;">
+                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;" class="pixelart">
                 </td>
             </tr>
             <tr>
@@ -64,7 +71,7 @@
                     <input type="button" value="+" onclick="updateQuantity('coal', 1)">
                     <br>
                     Total: <span id="total_coal">0.00</span>
-                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;">
+                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;" class="pixelart">
                 </td>
                 <td>
                     <input type="button" value="-" onclick="updateQuantity('iron', -1)">
@@ -72,7 +79,7 @@
                     <input type="button" value="+" onclick="updateQuantity('iron', 1)">
                     <br>
                     Total: <span id="total_iron">0.00</span>
-                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;">
+                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;" class="pixelart">
                 </td>
                 <td>
                     <input type="button" value="-" onclick="updateQuantity('gold', -1)">
@@ -80,7 +87,7 @@
                     <input type="button" value="+" onclick="updateQuantity('gold', 1)">
                     <br>
                     Total: <span id="total_gold">0.00</span>
-                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;">
+                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;" class="pixelart">
                 </td>
                 <td>
                     <input type="button" value="-" onclick="updateQuantity('dimstone', -1)">
@@ -88,7 +95,7 @@
                     <input type="button" value="+" onclick="updateQuantity('dimstone', 1)">
                     <br>
                     Total: <span id="total_dimstone">0.00</span>
-                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;">
+                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;" class="pixelart">
                 </td>
             </tr>
             <tr>
@@ -106,19 +113,19 @@
             <tr>
                 <td>
                     <span id="price_log">2.23</span>
-                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;">
+                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;" class="pixelart">
                 </td>
                 <td>
                     <span id="price_leaf">0.28</span>
-                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;">
+                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;" class="pixelart">
                 </td>
                 <td>
                     <span id="price_stone">0.14</span>
-                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;">
+                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;" class="pixelart">
                 </td>
                 <td>
                     <span id="price_melon">2.80</span>
-                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;">
+                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;" class="pixelart">
                 </td>
             </tr>
             <tr>
@@ -128,7 +135,7 @@
                     <input type="button" value="+" onclick="updateQuantity('log', 1)">
                     <br>
                     Total: <span id="total_log">0.00</span>
-                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;">
+                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;" class="pixelart">
                 </td>
                 <td>
                     <input type="button" value="-" onclick="updateQuantity('leaf', -1)">
@@ -136,7 +143,7 @@
                     <input type="button" value="+" onclick="updateQuantity('leaf', 1)">
                     <br>
                     Total: <span id="total_leaf">0.00</span>
-                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;">
+                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;" class="pixelart">
                 </td>
                 <td>
                     <input type="button" value="-" onclick="updateQuantity('stone', -1)">
@@ -144,7 +151,7 @@
                     <input type="button" value="+" onclick="updateQuantity('stone', 1)">
                     <br>
                     Total: <span id="total_stone">0.00</span>
-                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;">
+                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;" class="pixelart">
                 </td>
                 <td>
                     <input type="button" value="-" onclick="updateQuantity('melon', -1)">
@@ -152,7 +159,7 @@
                     <input type="button" value="+" onclick="updateQuantity('melon', 1)">
                     <br>
                     Total: <span id="total_melon">0.00</span>
-                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;">
+                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;" class="pixelart">
                 </td>
             </tr>
             <tr class="pixelart">
@@ -164,7 +171,7 @@
             <tr>
                 <td>
                     <span id="price_cotton">0.56</span>
-                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;">
+                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;" class="pixelart">
                 </td>
             </tr>
             <tr>
@@ -174,14 +181,14 @@
                     <input type="button" value="+" onclick="updateQuantity('cotton', 1)">
                     <br>
                     Total: <span id="total_cotton">0.00</span>
-                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;">
+                    <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;" class="pixelart">
                 </td>
             </tr>
         </table>
-        <p>
+        <h1>
             Total Order Value: <span id="order_total">0.00</span>
-            <img src="ShopStuff/gold_coin.png" style="width:20px; height:20px;">
-        </p>
+            <img src="ShopStuff/gold_coin.png" style="width:30px; height:30px;" class="pixelart">
+        </h>
     </form>
     
     <script>

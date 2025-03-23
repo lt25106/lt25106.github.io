@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
-    <style>
-        body {
-            background-size: 256px 256px;
-            image-rendering: pixelated;
-        }
-    </style>
+<style>
+    body {
+        background-size: 256px 256px;
+        image-rendering: pixelated;
+    }
+</style>
 <body>
     <script>
         const brickImages = [
@@ -28,7 +28,9 @@
         });
         document.addEventListener("keydown", function(event) {
             if (event.key === "m" || event.key === "M") { 
-                window.location.href = "MCbricks.html";
+                window.location.href = "MCbricks.html"; 
+            } else if (event.key === "h" || event.key === "H"){
+                window.location.href = "index.html"
             } else {
                 location.reload();
             }
