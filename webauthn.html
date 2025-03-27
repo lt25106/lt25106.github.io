@@ -2,13 +2,14 @@
 <html>
 	<link rel="stylesheet" type="text/css" href="style.css">
   <body>
+		<h1>Your email is:</h1>
     <script>
       // Minimal registration call:
       const creationOptions = {
-        challenge: Uint8Array.from("randomChallenge", c => c.charCodeAt(0)),
+        challenge: Uint8Array.from("randomChallenge", function(c) {return c.charCodeAt(0);}),
         rp: { name: "Example Corp" },
         user: {
-          id: Uint8Array.from("userID", c => c.charCodeAt(0)),
+          id: Uint8Array.from("userID", function(c) {return c.charCodeAt(0);}),
           name: "user@example.com",
           displayName: "User"
         },
