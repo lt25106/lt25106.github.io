@@ -1,24 +1,47 @@
 <!DOCTYPE html>
-<html>
-	<link rel="stylesheet" type="text/css" href="style.css">
-  <body>
-		<h1>Your email is:</h1>
-    <script>
-      // Minimal registration call:
-      const creationOptions = {
-        challenge: Uint8Array.from("randomChallenge", function(c) {return c.charCodeAt(0);}),
-        rp: { name: "Example Corp" },
-        user: {
-          id: Uint8Array.from("userID", function(c) {return c.charCodeAt(0);}),
-          name: "user@example.com",
-          displayName: "User"
-        },
-        pubKeyCredParams: [{ type: "public-key", alg: -7 }]
-      };
-
-      navigator.credentials.create({ publicKey: creationOptions })
-        .then(cred => console.log("Credential created:", cred))
-        .catch(err => console.error("Error:", err));
-    </script>
-  </body>
+<html lang="en">
+<body>
+	<!-- Microsoft Sign-In Button -->
+	<button onclick="signInWithMicrosoft()">Sign in with Microsoft</button>
+	
+	<script>
+		// Microsoft App Configuration
+		const msalConfig = {
+			auth: {
+				clientId: "YOUR_MICROSOFT_CLIENT_ID", // Replace with your actual Client ID
+				authority: "https://login.microsoftonline.com/common", // Use 'common' for multiple tenants
+				redirectUri: window.location.origin // Redirects back to your site after login
+			}
+		};
+		
+		// Initialize MSAL instance
+		const msalInstance = new msal.PublicClientApplication(msalConfig);
+		
+		// Microsoft Login Function
+		async function signInWithMicrosoft() {
+			try {
+				const loginResponse = await msalInstance.loginPopup({
+					scopes: ["User.Read"] // Request user profile data
+				});
+				
+				console.log("Login Success:", loginResponse);
+				
+				// Fetch user details
+				getUserProfile(loginResponse.account);
+			} catch (error) {
+				console.error("Login Failed:", error);
+			}
+		}
+		
+		// Function to Get User Profile Data
+		async function getUserProfile(account) {
+			console.log("User Info:", {
+				id: account.localAccountId,
+				username: account.username,
+				name: account.name
+			});
+		}
+	</script>
+	<script src="https://alcdn.msauth.net/browser/2.32.1/js/msal-browser.min.js"></script>
+</body>
 </html>
