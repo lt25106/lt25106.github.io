@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>WebAuthn Demo</title>
+  </head>
+  <body>
+    <script>
+      // Minimal registration call:
+      const creationOptions = {
+        challenge: Uint8Array.from("randomChallenge", c => c.charCodeAt(0)),
+        rp: { name: "Example Corp" },
+        user: {
+          id: Uint8Array.from("userID", c => c.charCodeAt(0)),
+          name: "user@example.com",
+          displayName: "User"
+        },
+        pubKeyCredParams: [{ type: "public-key", alg: -7 }]
+      };
+
+      navigator.credentials.create({ publicKey: creationOptions })
+        .then(cred => console.log("Credential created:", cred))
+        .catch(err => console.error("Error:", err));
+    </script>
+  </body>
+</html>
