@@ -9,10 +9,13 @@
             border: 0.25em solid;
             border-radius: 1em;
             box-shadow: 0 0 1em;
+            aspect-ratio: 16 / 21;
         }
         #text {
             align-self: center;
             font-size: 2em;
+            margin-left: 1em;
+            white-space: nowrap;
         }
         button {
             font-size: 1em;
@@ -20,6 +23,13 @@
             border-radius: 0.5em;
             background-color: #fcd53f;
             box-shadow: 0 0 1em #fcd53f;
+        }
+        h1 {
+            padding-left: 0.1em;
+            border: 0.1em solid red;
+            border-radius: 0.25em;
+            box-shadow: 0 0 1em red;
+            display: none;
         }
     </style>
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -40,10 +50,13 @@
         <div>
             <canvas id="canvas" width="480" height="630"></canvas>
             <span id="text">
-                &nbsp;Try and collect the yellow coin! 🟡<br>
-                <span style="margin-left: 10.83em;">⬆️</span><br>
-                &nbsp;Use the arrow keys! ⬅️⬇️➡️ <br>
-                &nbsp;Score:
+                <h1>You hit 🔴<br>Press Ctrl + R</h1>
+                Control 🔵<br>
+                Collect 🟡<br>
+                Avoid 🔴
+                <span style="margin-left: 6.2em;">⬆️</span><br>
+                Use the arrow keys! ⬅️⬇️➡️ <br>
+                Score:
                 <span id="score">0</span>
                 <button onclick="localStorage.removeItem('Score');location.reload()">Reset</button>
             </span>
@@ -61,10 +74,11 @@
         let dx=0;
         let dy=0;
         let coinx=Math.random()*480;
-        let coiny=Math.random()*480;
+        let coiny=Math.random()*630;
+        let obstacles = [];
 
-        setInterval(move,16)
-        setInterval(collideDetect,16)
+        let moveint = setInterval(move,16)
+        let collideint = setInterval(collideDetect,16)
 
         function move() {
             x += dx
@@ -73,7 +87,7 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height)
             ctx.beginPath();
             ctx.arc(x,y,10,0,Math.PI*2);
-            ctx.fillStyle="#FF0000";
+            ctx.fillStyle="#0074ba";
             ctx.fill();
             ctx.closePath();
             
@@ -82,6 +96,14 @@
             ctx.fillStyle="#fcd53f";
             ctx.fill();
             ctx.closePath();
+
+            obstacles.forEach(obs => {
+                ctx.beginPath();
+                ctx.arc(obs.x,obs.y,10,0,Math.PI*2);
+                ctx.fillStyle="#ff0000";
+                ctx.fill();
+                ctx.closePath();
+            })
             
             x = Math.max(10, Math.min(canvas.width - 10, x));
             y = Math.max(10, Math.min(canvas.height - 10, y));
@@ -89,8 +111,6 @@
             if (x <= 10 || x + 10 >= canvas.width) {
                 dx = 0;
             }
-            
-            // Top or bottom wall
             if (y <= 10 || y + 10 >= canvas.height) {
                 dy = 0;
             }
@@ -110,7 +130,22 @@
 
                 coinx = Math.random()*480;
                 coiny = Math.random()*480;
-            } // 19
+
+                let obsx=Math.random()*480;
+                let obsy=Math.random()*630;
+                obstacles.push({x:obsx,y:obsy})
+            }
+
+            for (let obs of obstacles) {
+                const distance = Math.hypot(obs.x - x, obs.y - y);
+                if (distance < 20) {
+                    document.querySelector("h1").style.display = "block"
+                    localStorage.removeItem('Score');
+                    clearInterval(moveint);
+                    //setTimeout(() => location.reload(), 2000);
+                    break;
+                }
+            }
         }
 
         document.addEventListener("keydown", setd)
