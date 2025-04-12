@@ -14,7 +14,7 @@
         #text {
             align-self: center;
             font-size: 2em;
-            margin-left: 1em;
+            margin-left: 0.5em;
             white-space: nowrap;
         }
         button {
@@ -56,9 +56,8 @@
                 Avoid 🔴
                 <span style="margin-left: 6.2em;">⬆️</span><br>
                 Use the arrow keys! ⬅️⬇️➡️ <br>
-                Score:
-                <span id="score">0</span>
-                <button onclick="localStorage.removeItem('Score');location.reload()">Reset</button>
+                Score: <span id="score">0</span><br>
+                High Score: <span id="hs">0</span> <button onclick="localStorage.removeItem('Score');location.reload()">Reset</button>
             </span>
         </div>
     </body>
@@ -66,8 +65,9 @@
         const canvas=document.getElementById("canvas");
         const ctx=canvas.getContext("2d");
         const score=document.getElementById("score");
+        const hs=document.getElementById("hs")
 
-        score.innerText = localStorage.getItem("Score") || 0;
+        hs.innerText = localStorage.getItem("Score") || 0;
 
         let x=240;
         let y=314;
@@ -126,7 +126,9 @@
         function collideDetect() {
             if (Math.hypot(coinx - x,coiny - y) < 20) {
                 score.innerText = parseInt(score.innerText) + 1 ;
-                localStorage.setItem("Score", score.innerText);
+                hs.innerText = Math.max(parseInt(score.innerText),parseInt(hs.innerText));
+
+                localStorage.setItem("Score", hs.innerText)
 
                 coinx = Math.random()*480;
                 coiny = Math.random()*480;
@@ -137,12 +139,9 @@
             }
 
             for (let obs of obstacles) {
-                const distance = Math.hypot(obs.x - x, obs.y - y);
-                if (distance < 20) {
+                if (Math.hypot(obs.x - x, obs.y - y) < 20) {
                     document.querySelector("h1").style.display = "block"
-                    localStorage.removeItem('Score');
                     clearInterval(moveint);
-                    //setTimeout(() => location.reload(), 2000);
                     break;
                 }
             }
