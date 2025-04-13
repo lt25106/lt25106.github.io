@@ -5,10 +5,26 @@ body {background-color: white;}
     border-radius: 0.5em;
     box-shadow: 0 0 1em;
 }
+#ans {
+    border-radius: 0.2em;
+    box-shadow: 0 0 1em white;
+}
+footer {
+    box-shadow: 0 0 2em cyan;
+    font-family: sans-serif;
+    display: flex;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    flex-direction: row;
+    justify-content: space-around;
+}
 @media (prefers-color-scheme: dark) {
     body {
         background-color: black;
         color: white;
     }
     a {color: cyan;}
+    footer {background-color: #003b40;}
 }

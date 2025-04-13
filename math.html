@@ -12,7 +12,7 @@
 		window.onload = function() {
 			document.getElementById("eq").innerHTML = m*x+C + " = " + m + "<i>x</i>" + " + " + C;
 			document.getElementById("marksovermax").innerHTML = 
-				'<button onclick = "reset()" style = "text-align:right;font-size:1em">Reset</button>'+marks+"/"+maxmarks;}
+				'<button onclick = "reset()" style = "text-align:right;font-size:1em;box-shadow:0 0 1em white;border-radius:0.25em">Reset</button>'+marks+"/"+maxmarks;}
 		function checkans(e) {
 			if (e.key === "Enter") {
 				maxmarks++;
@@ -61,5 +61,10 @@
 		</div>
 		<div id = "corw" style = "font-size:4em;"></div>
 		<div id = "marksovermax" style = "text-align:right;font-size:4em"></div>
+		<footer>
+			<a href="animation.html">SquareDash</a>
+			<a href="bricks.html">Bricks</a>
+			<a href="snake.html">Coin Quest</a>
+		</footer>
 	</body>
 </html>
