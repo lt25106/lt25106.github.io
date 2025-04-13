@@ -24,13 +24,6 @@
             background-color: #fcd53f;
             box-shadow: 0 0 1em #fcd53f;
         }
-        h1 {
-            padding-left: 0.1em;
-            border: 0.1em solid red;
-            border-radius: 0.25em;
-            box-shadow: 0 0 1em red;
-            display: none;
-        }
     </style>
     <link rel="stylesheet" type="text/css" href="style.css">
     <body>
@@ -50,13 +43,14 @@
         <div>
             <canvas id="canvas" width="480" height="630"></canvas>
             <span id="text">
-                <h1>You hit 🔴<br>Press Ctrl + R</h1>
-                Control 🔵<br>
-                Collect 🟡<br>
-                Avoid 🔴
-                <span style="margin-left: 6.2em;">⬆️</span><br>
-                Use the arrow keys! ⬅️⬇️➡️ <br>
-                Score: <span id="score">0</span><br>
+                <span id="useless">
+                    Control 🔵<br>
+                    Collect 🟡<br>
+                    Avoid 🔴
+                    <span style="margin-left: 6.2em;">⬆️</span><br>
+                    Use the arrow keys! ⬅️⬇️➡️
+                </span>
+                <br>Score: <span id="score">0</span><br>
                 High Score: <span id="hs">0</span> <button onclick="localStorage.removeItem('Score');location.reload()">Reset</button>
             </span>
         </div>
@@ -140,7 +134,15 @@
 
             for (let obs of obstacles) {
                 if (Math.hypot(obs.x - x, obs.y - y) < 20) {
-                    document.querySelector("h1").style.display = "block"
+                    document.getElementById("useless").innerHTML = "You hit 🔴<br>Press any key to restart<br>";
+
+                    document.addEventListener("keydown",restart);
+                    function restart(e) {
+                        if (!["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
+                            location.reload()
+                        }
+                    }
+
                     clearInterval(moveint);
                     break;
                 }
