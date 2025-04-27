@@ -7,6 +7,12 @@
       margin: 0;
       padding: 0;
     }
+    span {
+      position: absolute;
+      right: 3rem;
+      top: 1rem;
+      scale: 2;
+    }
   </style>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +20,10 @@
 </head>
 <body>
   <canvas></canvas>
+  <span>
+      <input type="checkbox" id="gravity">
+      <label for="gravity">Gravity</label>
+  </span>
   <script>
     const canvas = document.querySelector("canvas");
     const ctx = canvas.getContext("2d");
@@ -45,6 +55,10 @@
       // Update position
       x += dx;
       y += dy;
+
+      if (document.getElementById("gravity").checked) {
+        dy += 0.15
+      }
       
       // Bounce off walls (with damping)
       if (x - 10 <= 0 || x + 10 >= canvas.width) {
