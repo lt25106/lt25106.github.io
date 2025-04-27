@@ -1,0 +1,79 @@
+<html lang="en">
+<head>
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bounce</title>
+</head>
+<body>
+  <canvas></canvas>
+  <script>
+    const canvas = document.querySelector("canvas");
+    const ctx = canvas.getContext("2d");
+    
+    let x = 20;
+    let y = 20;
+    let dx = 0;
+    let dy = 0;
+    
+    function resizecanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    
+    resizecanvas();
+    
+    window.addEventListener("resize",resizecanvas)
+    
+    function move() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw the ball
+      ctx.beginPath();
+      ctx.arc(x, y, 10, 0, Math.PI * 2);
+      ctx.fillStyle = "black";
+      ctx.fill();
+      ctx.closePath();
+      
+      // Update position
+      x += dx;
+      y += dy;
+      
+      // Bounce off walls (with damping)
+      if (x - 10 <= 0 || x + 10 >= canvas.width) {
+        dx = -dx * 0.5;  // Reverse direction & lose some energy
+      }
+      if (y - 10 <= 0 || y + 10 >= canvas.height) {
+        dy = -dy * 0.5;  // Reverse direction & lose some energy
+      }
+      
+      // Clamp position to prevent sticking at edges
+      x = Math.max(10, Math.min(canvas.width - 10, x));
+      y = Math.max(10, Math.min(canvas.height - 10, y));
+      
+      requestAnimationFrame(move);
+    }
+
+    // Start animation
+    requestAnimationFrame(move);
+    
+    
+    function setd(key) {
+      if (key.key == "ArrowUp") {dy -= 4}
+      if (key.key == "ArrowDown") {dy += 4}
+      if (key.key == "ArrowLeft") {dx -= 4}
+      if (key.key == "ArrowRight") {dx += 4}
+    }
+    
+    document.addEventListener("keydown", setd)
+    
+  </script>
+</body>
+</html>
