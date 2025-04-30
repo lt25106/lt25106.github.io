@@ -22,8 +22,8 @@
 <body>
   <canvas></canvas>
   <span>
-      <input type="checkbox" id="gravity">
-      <label for="gravity">Gravity</label>
+    <input type="checkbox" id="gravity">
+    <label for="gravity">Gravity</label>
   </span>
   <script>
     const canvas = document.querySelector("canvas");
@@ -52,21 +52,57 @@
       ctx.fillStyle = "black";
       ctx.fill();
       ctx.closePath();
+
+      ctx.beginPath();
+      ctx.arc(314, 314, 20, 0, Math.PI * 2);
+      ctx.fillStyle = "red";
+      ctx.fill();
+      ctx.closePath();
       
       // Update position
       x += dx;
       y += dy;
 
       if (document.getElementById("gravity").checked) {
-        dy += 0.15
+        dy += 0.2
       }
       
       // Bounce off walls (with damping)
-      if (x - 10 <= 0 || x + 10 >= canvas.width) {
+      if (x <= 10 || x + 10 >= canvas.width) {
         dx = -dx * 0.5;  // Reverse direction & lose some energy
       }
-      if (y - 10 <= 0 || y + 10 >= canvas.height) {
+      if (y <= 10 || y + 10 >= canvas.height) {
         dy = -dy * 0.5;  // Reverse direction & lose some energy
+      }
+      if (Math.hypot(x - 314, y - 314) <= 30) {
+        // Get collision normal vector (from circle center to collision point)
+        const normalX = x - 314;
+        const normalY = y - 314;
+        
+        // Normalize the normal vector
+        const length = Math.hypot(normalX, normalY);
+        const normalizedNormalX = normalX / length;
+        const normalizedNormalY = normalY / length;
+
+        // Velocity vector
+        const velocityX = dx;
+        const velocityY = dy;
+
+        // Dot product of velocity and normal
+        const dotProduct = velocityX * normalizedNormalX + velocityY * normalizedNormalY;
+
+        // Reflect velocity vector (proper reflection formula)
+        dx = velocityX - 2 * dotProduct * normalizedNormalX;
+        dy = velocityY - 2 * dotProduct * normalizedNormalY;
+
+        // Add damping (optional energy loss)
+        dx *= 0.5;
+        dy *= 0.5;
+
+        // Reposition ball outside collision circle to prevent sticking
+        const overlap = 30 - Math.hypot(x - 314, y - 314) + 0.1;
+        x += normalizedNormalX * overlap;
+        y += normalizedNormalY * overlap;
       }
       
       // Clamp position to prevent sticking at edges
