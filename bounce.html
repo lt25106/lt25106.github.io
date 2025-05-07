@@ -54,10 +54,12 @@
       ctx.closePath();
 
       ctx.beginPath();
-      ctx.arc(314, 314, 20, 0, Math.PI * 2);
+      ctx.arc(canvas.width/4, canvas.height/4, 20, 0, Math.PI * 2);
       ctx.fillStyle = "red";
       ctx.fill();
       ctx.closePath();
+
+      ctx.fillRect(canvas.width *(3/4), canvas.height *(3/4), 40, 40)
       
       // Update position
       x += dx;
@@ -74,35 +76,64 @@
       if (y <= 10 || y + 10 >= canvas.height) {
         dy = -dy * 0.5;  // Reverse direction & lose some energy
       }
-      if (Math.hypot(x - 314, y - 314) <= 30) {
+      // Bounce off red ball
+      if (Math.hypot(x - canvas.width/4, y - canvas.height/4) <= 30) {
         // Get collision normal vector (from circle center to collision point)
-        const normalX = x - 314;
-        const normalY = y - 314;
-        
+        const normalX = x - canvas.width/4;
+        const normalY = y - canvas.height/4;
+
         // Normalize the normal vector
         const length = Math.hypot(normalX, normalY);
-        const normalizedNormalX = normalX / length;
-        const normalizedNormalY = normalY / length;
-
-        // Velocity vector
-        const velocityX = dx;
-        const velocityY = dy;
 
         // Dot product of velocity and normal
-        const dotProduct = velocityX * normalizedNormalX + velocityY * normalizedNormalY;
+        const dotProduct = dx * (normalX / length) + dy * (normalY / length);
 
         // Reflect velocity vector (proper reflection formula)
-        dx = velocityX - 2 * dotProduct * normalizedNormalX;
-        dy = velocityY - 2 * dotProduct * normalizedNormalY;
+        dx = dx - 2 * dotProduct * (normalX / length);
+        dy = dy - 2 * dotProduct * (normalY / length);
 
         // Add damping (optional energy loss)
         dx *= 0.5;
         dy *= 0.5;
 
         // Reposition ball outside collision circle to prevent sticking
-        const overlap = 30 - Math.hypot(x - 314, y - 314) + 0.1;
-        x += normalizedNormalX * overlap;
-        y += normalizedNormalY * overlap;
+        const overlap = 30 - Math.hypot(x - canvas.width/4, y - canvas.height/4) + 0.1;
+        x += (normalX / length) * overlap;
+        y += (normalY / length) * overlap;
+      }
+      // Bounce off square
+      if (
+        x + 10 > canvas.width * (3/4) &&
+        x - 10 < canvas.width * (3/4) + 40 &&
+        y + 10 > canvas.height * (3/4) &&
+        y - 10 < canvas.height * (3/4) + 40
+      ) {
+        // Find the overlap on each side
+        const leftOverlap = (x + 10) - canvas.width * (3/4);
+        const rightOverlap = (canvas.width * (3/4) + 40) - (x - 10);
+        const topOverlap = (y + 10) - canvas.height * (3/4);
+        const bottomOverlap = (canvas.height * (3/4) + 40) - (y - 10);
+
+        // Find the minimum overlap (which side is closest)
+        const minOverlap = Math.min(leftOverlap, rightOverlap, topOverlap, bottomOverlap);
+
+        if (minOverlap === leftOverlap) {
+          // Touching left side
+          x = canvas.width * (3/4) - 10;
+          dx = -dx * 0.5;
+        } else if (minOverlap === rightOverlap) {
+          // Touching right side
+          x = canvas.width * (3/4) + 40 + 10;
+          dx = -dx * 0.5;
+        } else if (minOverlap === topOverlap) {
+          // Touching top side
+          y = canvas.height * (3/4) - 10;
+          dy = -dy * 0.5;
+        } else if (minOverlap === bottomOverlap) {
+          // Touching bottom side
+          y = canvas.height * (3/4) + 40 + 10;
+          dy = -dy * 0.5;
+        }
       }
       
       // Clamp position to prevent sticking at edges
@@ -130,6 +161,8 @@
     }
     
     document.addEventListener("keydown", setd)
+
+    // TODO: add more balls
   </script>
 </body>
 </html>
